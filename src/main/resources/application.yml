@@ -1,0 +1,29 @@
+
+server:
+  servlet:
+    context-path: /api/agendamentos
+
+spring:
+  application:
+    name: sgc-agendamento
+  h2:
+    console:
+      enabled: true
+      path: /testdb
+  datasource:
+    url: jdbc:h2:mem:sgc-agenda
+    username: testdb
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+springdoc:
+  swagger-ui:
+    path: /endpoints
