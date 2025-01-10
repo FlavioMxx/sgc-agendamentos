@@ -30,7 +30,17 @@ public class EstabelecimentoController {
         List<EstabelecimentoDTO> estabelecimentoList = service.buscarEstabelecimentos();
 
         return ResponseEntity
-                .ok()
+                .status(HttpStatus.OK)
                 .body(estabelecimentoList);
+    }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<String> deletarEstabelecimentoPorID(@PathVariable Long id) {
+
+        String mensagemRetorno = service.deletarEstabelecimentoPorID(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(mensagemRetorno);
     }
 }
