@@ -4,6 +4,7 @@ import br.com.fmxx.sgc_agendamento.dto.EstabelecimentoDTO;
 import br.com.fmxx.sgc_agendamento.entity.Estabelecimento;
 import br.com.fmxx.sgc_agendamento.mapper.EstabelecimentoMapper;
 import br.com.fmxx.sgc_agendamento.repository.EstabelecimentoRepository;
+import br.com.fmxx.sgc_agendamento.validator.DadosEstabelecimentoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,9 @@ public class EstabelecimentoService {
     private final EstabelecimentoRepository repository;
     private final EstabelecimentoMapper mapper;
 
-    public EstabelecimentoDTO criarEstabelecimento(EstabelecimentoDTO estabelecimentoDTO) {
+    public EstabelecimentoDTO criarEstabelecimento(EstabelecimentoDTO estabelecimentoDTO) throws IllegalAccessException {
 
-        //TODO validacoes dos campos internos nulos ou vazios.
+        DadosEstabelecimentoValidator.validar(estabelecimentoDTO);
 
         Estabelecimento novoEstabelecimento = repository.save(mapper.dtoToEntity(estabelecimentoDTO));
 
