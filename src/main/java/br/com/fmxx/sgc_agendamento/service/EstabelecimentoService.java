@@ -5,7 +5,7 @@ import br.com.fmxx.sgc_agendamento.entity.Estabelecimento;
 import br.com.fmxx.sgc_agendamento.exceptions.EntidadeInexistenteException;
 import br.com.fmxx.sgc_agendamento.mapper.EstabelecimentoMapper;
 import br.com.fmxx.sgc_agendamento.repository.EstabelecimentoRepository;
-import br.com.fmxx.sgc_agendamento.validator.DadosEstabelecimentoValidator;
+import br.com.fmxx.sgc_agendamento.validator.DadosInvalidosValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class EstabelecimentoService {
 
     public EstabelecimentoDTO criarEstabelecimento(EstabelecimentoDTO estabelecimentoDTO) throws IllegalAccessException {
 
-        DadosEstabelecimentoValidator.validar(estabelecimentoDTO);
+        DadosInvalidosValidator.validar(estabelecimentoDTO);
 
         Estabelecimento novoEstabelecimento = repository.save(mapper.dtoToEntity(estabelecimentoDTO));
 
