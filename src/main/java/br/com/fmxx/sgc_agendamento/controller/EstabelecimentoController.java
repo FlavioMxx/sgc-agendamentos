@@ -1,6 +1,7 @@
 package br.com.fmxx.sgc_agendamento.controller;
 
-import br.com.fmxx.sgc_agendamento.dto.EstabelecimentoDTO;
+import br.com.fmxx.sgc_agendamento.dto.EstabelecimentoRequestDTO;
+import br.com.fmxx.sgc_agendamento.dto.EstabelecimentoResponseDTO;
 import br.com.fmxx.sgc_agendamento.service.EstabelecimentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,17 +18,27 @@ public class EstabelecimentoController {
     private final EstabelecimentoService service;
 
     @PostMapping
-    private ResponseEntity<EstabelecimentoDTO> criarEstabelecimento(@RequestBody EstabelecimentoDTO estabelecimento) throws IllegalAccessException {
-        EstabelecimentoDTO novoEstabelecimento = service.criarEstabelecimento(estabelecimento);
+    public ResponseEntity<EstabelecimentoResponseDTO> criarEstabelecimento(@RequestBody EstabelecimentoRequestDTO estabelecimento) throws IllegalAccessException {
+        EstabelecimentoResponseDTO novoEstabelecimento = service.criarEstabelecimento(estabelecimento);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(novoEstabelecimento);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EstabelecimentoResponseDTO> atualizarEstabelecimento(@PathVariable Long id, @RequestBody EstabelecimentoRequestDTO estabelecimento) throws IllegalAccessException {
+
+        EstabelecimentoResponseDTO estabelecimentoAtualizado = service.atualizarEstabelecimento(id, estabelecimento);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(estabelecimentoAtualizado);
+    }
+
     @GetMapping
-    private ResponseEntity<List<EstabelecimentoDTO>> buscarEstabelecimentos() {
-        List<EstabelecimentoDTO> estabelecimentoList = service.buscarEstabelecimentos();
+    public ResponseEntity<List<EstabelecimentoResponseDTO>> buscarEstabelecimentos() {
+        List<EstabelecimentoResponseDTO> estabelecimentoList = service.buscarEstabelecimentos();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -35,7 +46,7 @@ public class EstabelecimentoController {
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<String> deletarEstabelecimentoPorID(@PathVariable Long id) {
+    public ResponseEntity<String> deletarEstabelecimentoPorID(@PathVariable Long id) {
 
         String mensagemRetorno = service.deletarEstabelecimentoPorID(id);
 
