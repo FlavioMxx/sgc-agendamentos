@@ -1,7 +1,6 @@
 package br.com.fmxx.sgc_agendamento.controller.advice;
 
 import br.com.fmxx.sgc_agendamento.exceptions.DadosInvalidosException;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
