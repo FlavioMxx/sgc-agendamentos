@@ -4,7 +4,7 @@ import br.com.fmxx.sgc_agendamento.exceptions.DadosInvalidosException;
 
 import java.lang.reflect.Field;
 
-public class DadosEstabelecimentoValidator {
+public class DadosInvalidosValidator {
 
     public static void validar(Object objeto) throws IllegalAccessException {
         if (objeto == null) {
@@ -16,11 +16,10 @@ public class DadosEstabelecimentoValidator {
             campo.setAccessible(true);
 
             Object valor = campo.get(objeto);
-            if (!campo.getName().equals("id")) {
-                if (valor == null)
+            if (!campo.isAnnotationPresent(IgnorarDadosValidator.class)
+                    && valor == null)
                     throw new DadosInvalidosException("O campo " + campo.getName() + " nao pode ser nulo.");
             }
-        }
     }
 }
 
