@@ -12,7 +12,7 @@ public interface ProcedimentosMapper {
 
     Procedimentos dtoToEntity(ProcedimentosRequestDTO dto);
 
-    ProcedimentosRequestDTO entityToDto(Procedimentos entity);
+    ProcedimentosRequestDTO entityToRequestDTO(Procedimentos entity);
 
     ProcedimentosResponseDTO entityToResponseDTO(Procedimentos entity);
 
