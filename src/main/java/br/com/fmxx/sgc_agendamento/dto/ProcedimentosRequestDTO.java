@@ -1,5 +1,6 @@
 package br.com.fmxx.sgc_agendamento.dto;
 
+import br.com.fmxx.sgc_agendamento.entity.Estabelecimento;
 import br.com.fmxx.sgc_agendamento.validator.IgnorarDadosValidator;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -14,6 +15,8 @@ public record ProcedimentosRequestDTO(
         BigDecimal valorProcedimento,
         @IgnorarDadosValidator
         @Schema(defaultValue = "Neste servico e oferecido a criacao e estilizacao de um componente botao para sua aplicacao.")
-        String descricaoProcedimento
+        String descricaoProcedimento,
+
+        Long idEstabelecimento
 )
 { }

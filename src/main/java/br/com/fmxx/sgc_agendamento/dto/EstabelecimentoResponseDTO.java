@@ -2,6 +2,9 @@ package br.com.fmxx.sgc_agendamento.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public record EstabelecimentoResponseDTO(
         @Schema(defaultValue = "12324")
         Long id,
@@ -12,6 +15,7 @@ public record EstabelecimentoResponseDTO(
         @Schema(defaultValue = "11987654321")
         String contatoEstabelecimento,
         @Schema(defaultValue = "true")
-        Boolean ativo
+        Boolean ativo,
+        List<ProcedimentosResponseDTO> procedimentos
 )
 { }
