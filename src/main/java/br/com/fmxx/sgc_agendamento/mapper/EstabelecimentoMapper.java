@@ -10,7 +10,9 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface EstabelecimentoMapper {
 
-    Estabelecimento dtoToEntity(EstabelecimentoRequestDTO dto);
+    Estabelecimento requestDTOToEntity(EstabelecimentoRequestDTO dto);
+
+    Estabelecimento responseDTOToEntity(EstabelecimentoResponseDTO dto);
 
     EstabelecimentoRequestDTO entityToRequestDTO(Estabelecimento entity);
 
