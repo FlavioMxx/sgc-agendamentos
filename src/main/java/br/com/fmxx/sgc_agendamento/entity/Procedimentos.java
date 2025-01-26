@@ -22,4 +22,8 @@ public class Procedimentos {
     private Integer duracaoMinutosProcedimento;
     @Column(name = "cl_valor_procedimento")
     private BigDecimal valorProcedimento;
+
+    @ManyToOne
+    @JoinColumn(name = "cl_estabelecimento_id")
+    private Estabelecimento estabelecimento;
 }

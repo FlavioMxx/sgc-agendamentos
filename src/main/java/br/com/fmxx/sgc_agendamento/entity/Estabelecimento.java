@@ -3,6 +3,9 @@ package br.com.fmxx.sgc_agendamento.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity(name = "tb_estabelecimento")
 public class Estabelecimento {
@@ -20,4 +23,8 @@ public class Estabelecimento {
     private String contatoEstabelecimento;
     @Column(name = "cl_ativo")
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @Column(name = "cl_procedimentos")
+    private List<Procedimentos> procedimentos = new ArrayList<>();
 }
